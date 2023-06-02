@@ -39,4 +39,4 @@ u8Output:0
 
 ## Detail (in Chinese):
 
-<https://acedroidx.github.io/HuaweiBatteryControl>
+<https://blog.acedroidx.top/HuaweiBatteryControl/>
