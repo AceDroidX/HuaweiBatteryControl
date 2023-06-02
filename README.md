@@ -5,7 +5,11 @@ Control charge threshold for Huawei laptop in Windows.
 华为笔记本充电控制
 
 Tested on `Honor Hunter v700` and `Huawei Matebook E GO`
+
 ## Usage:
+
+Tips: Make sure you are using Admin permission.
+
 ```
 HuaweiBatteryControl.exe <raw data in decimal>
 
