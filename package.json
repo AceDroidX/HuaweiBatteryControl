@@ -1,0 +1,18 @@
+{
+  "name": "huawei-battery-control",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vuepress/client": "2.0.0-beta.62",
+    "vue": "^3.3.4",
+    "vuepress": "2.0.0-beta.62"
+  }
+}
