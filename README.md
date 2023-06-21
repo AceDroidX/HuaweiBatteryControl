@@ -4,7 +4,10 @@ Control charge threshold for Huawei laptop in Windows.
 
 华为笔记本充电控制
 
-Tested on `Honor Hunter v700` and `Huawei Matebook E GO`
+Tested on:
+- Huawei Matebook 14 2020
+- Huawei Matebook E GO
+- Honor Hunter v700
 
 ## Usage:
 
