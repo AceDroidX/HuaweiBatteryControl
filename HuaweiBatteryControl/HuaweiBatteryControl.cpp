@@ -25,19 +25,46 @@ unsigned int copyArr(void* dst, size_t dstlength, const void* src, size_t srclen
 
 int main(int argc, char* argv[])
 {
-    cout << "\nCommand-line arguments:\n";
+    cout << "Command-line arguments:\n";
     for (int count = 0; count < argc; count++)
         cout << "  argv[" << count << "]   "
         << argv[count] << "\n";
 
     unsigned long long data = 0x46281003;
     if (argc == 2) {
-        data = strtoul(argv[1], NULL, 10);
+        if (strcmp(argv[1], "--help") == 0) {
+            printf_s(
+"\nUsage:\n\nHuaweiBatteryControl.exe <upper limit> <lower limit> [--new] \n\
+    --new    Using new methods, new devices or BIOS may require this option \n\
+\n\
+HuaweiBatteryControl.exe <raw data in decimal> \n\
+    Raw data explain: \n\
+    0x<upper limit> < lower limit>1003 \n\
+    0x<upper limit> < lower limit>48011503 (for new devices or BIOS) \n\
+    Then convert hex to decimal");
+            return 0;
+        }
+        else {
+            data = strtoull(argv[1], NULL, 10);
+        }
     }
     else if (argc == 3) {
-        data = strtoul(argv[1], NULL, 10) * 0x1000000 | strtoul(argv[2], NULL, 10) * 0x10000 | 0x1003;
+        data = strtoull(argv[1], NULL, 10) * 0x1000000 | strtoull(argv[2], NULL, 10) * 0x10000 | 0x1003;
     }
-    printf("data:%llu(0x%llx)\n", data, data);
+    else if (argc == 4) {
+        if (strcmp(argv[3], "--new") == 0) {
+            data = strtoull(argv[1], NULL, 10) * 0x10000000000 | strtoull(argv[2], NULL, 10) * 0x100000000 | 0x48011503;
+        }
+        else {
+            printf_s("Unknown option\nTry 'HuaweiBatteryControl.exe --help' for more information");
+            return 0;
+        }
+    }
+    else {
+        printf_s("Unknown option\nTry 'HuaweiBatteryControl.exe --help' for more information");
+        return 0;
+    }
+    printf_s("data:%llu(0x%llx)\n", data, data);
 
     HRESULT hres;
 
@@ -218,7 +245,7 @@ int main(int argc, char* argv[])
         &varReturnValue, NULL, 0);
 
     unsigned long long(*returnData)[64] = (unsigned long long(*)[64])(varReturnValue.parray->pvData);
-    printf("u8Output:%llu\n", *returnData[0]);
+    printf_s("u8Output:%llu\n", *returnData[0]);
 
 
     // Clean up
